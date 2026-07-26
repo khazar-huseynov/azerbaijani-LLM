@@ -2,7 +2,6 @@ import argparse
 import json
 import random
 from pathlib import Path
-
 import numpy as np
 import torch
 import yaml
@@ -54,7 +53,6 @@ def load_ds(path: str) -> Dataset:
 
 def qualitative_check(model, tokenizer, prompts: list[str], device: str):
     model.eval()
-    print("\n--- Qualitative spot-check ---")
     for p in prompts:
         msgs = [{"role": "user", "content": p}]
         enc = tokenizer.apply_chat_template(
@@ -178,7 +176,6 @@ def main(args):
         processing_class=tokenizer,
     )
 
-    print("Starting training…")
     trainer.train()
 
     adapter_out = cfg["paths"]["adapter_out"]
